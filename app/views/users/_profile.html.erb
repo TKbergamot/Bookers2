@@ -1,0 +1,29 @@
+
+<h1>User info</h1>
+<%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: "jpeg" %> <br>
+name <%= user.name %> <br>
+introduction <%= user.introduction %> <br>
+<% if user.id == current_user.id %>
+  <%= link_to "edit", edit_user_path(user) %> <br>
+<% else %>
+  <%= link_to "mypage", user_path(current_user) %>
+<% end %>
+
+
+<%= form_for(@book) do |f| %>
+
+<%= render "layouts/error_messages", model: f.object %>
+
+<h1>New Book</h1>
+	<div class="field">
+		<%= f.label :title %><br>
+		<%= f.text_field :title %>
+	</div>
+	<div class="field">
+		<%= f.label :body %><br>
+		<%= f.text_area :body %>
+	</div>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>

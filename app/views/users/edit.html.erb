@@ -1,0 +1,14 @@
+<h1>User info</h1>
+
+<%= form_for(@user) do |f| %>
+
+<%= render "layouts/error_messages", model: f.object %>
+
+  Name
+  <%= f.text_field :name, autofocus: true %>
+  Image
+  <%= f.attachment_field :profile_image %>
+  Introduction
+  <%= f.text_area :introduction %>
+  <%= f.submit "Update User" %>
+<% end %>
