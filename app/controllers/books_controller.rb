@@ -9,7 +9,8 @@ before_action :current_user, only: [:edit,:update, :destroy]
   end
 
   def show
-  	@book = Book.find(params[:id])
+  	@book_detail = Book.find(params[:id])
+    @book = Book.new
   end
 
   def create
@@ -18,9 +19,9 @@ before_action :current_user, only: [:edit,:update, :destroy]
   	  if @book.save
   	  	redirect_to @book, notice: "Book was successfully created."
   	  else
-        @user = current_user
+        @books = Book.all
         session[:error] = @book.errors.full_messages
-  	  	render template: "users/show"
+  	  	render :index
   	  end
   end
 
@@ -45,8 +46,12 @@ before_action :current_user, only: [:edit,:update, :destroy]
 
   def destroy
   	book = Book.find(params[:id])
-  	book.destroy
-  	redirect_to books_path,notice: "Book was successfully destroyed."
+    if book.user == current_user
+  	  book.destroy
+    	redirect_to books_path,notice: "Book was successfully destroyed."
+    else
+      render :edit
+    end
   end
 
 

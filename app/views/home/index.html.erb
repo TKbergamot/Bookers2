@@ -1,14 +1,21 @@
 
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
 
-<h1>welocome to Bookers !!</h1>
-<p>InBookers,<br>
-	you can share and exchange your opinions , inpressions , and emotions<br>
-	about various books!
+			<h1>welocome to <span class="glyphicon glyphicon-book" aria-hidden="true"></span><strong>Bookers</strong> !!</h1>
+			<p>In <span class="glyphicon glyphicon-book" aria-hidden="true"></span><strong>Bookers</strong>,<br>
+				you can share and exchange your opinions , inpressions , and emotions<br>
+				about various books!</p>
 
-<% if user_signed_in? %>
-	<%= link_to "Log in", user_path(current_user) %>
-	<%= link_to "Sign up", user_path(current_user) %>
-	<% else %>
-<%= link_to "Log in", new_user_session_path %>
-<%= link_to "Sign Up", new_user_registration_path %>
-<% end %>
+			<% if user_signed_in? %>
+				<%= link_to "Log in", user_path(current_user), class:"btn btn-info btn-block" %>
+				<%= link_to "Sign up", user_path(current_user), class:"btn btn-success btn-block" %>
+			<% else %>
+				<%= link_to "Log in", new_user_session_path, class:"btn btn-info btn-block" %>
+				<%= link_to "Sign Up", new_user_registration_path, class:"btn btn-default btn-block" %>
+			<% end %>
+
+		</div>
+	</div>
+</div>

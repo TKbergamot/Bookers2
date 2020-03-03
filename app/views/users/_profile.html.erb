@@ -1,29 +1,52 @@
+<div class= "container">
+	<div class= "row">
+		<div class= "col-xs-3">
+		<h1>User info</h1>
+			<%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: "jpeg" %> <br>
 
-<h1>User info</h1>
-<%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: "jpeg" %> <br>
-name <%= user.name %> <br>
-introduction <%= user.introduction %> <br>
-<% if user.id == current_user.id %>
-  <%= link_to "edit", edit_user_path(user) %> <br>
-<% else %>
-  <%= link_to "mypage", user_path(current_user) %>
-<% end %>
+			<table class="table">
+				<tr>
+					<th>name</th>
+					<th><%= user.name %></th>
+				</tr>
+				<tr>
+					<th>introduction</th>
+					<th><%= user.introduction %></th>
+				</tr>
+			</table>
+			<% if user.id == current_user.id %>
+			  <button type="button" class="btn btn-default btn-block">
+			  	<%= link_to edit_user_path(user) do %>
+			  		<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+			  	<% end %>
+			  </button>
+			<% else %>
+			  <button type="button" class="btn btn-default btn-block">
+			  	<%= link_to user_path(current_user) do %>
+			  		<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+			  	<% end %>
+			  </button>
+			<% end %>
 
 
-<%= form_for(@book) do |f| %>
+			<%= form_for(@book) do |f| %>
 
-<%= render "layouts/error_messages", model: f.object %>
+			<%= render "layouts/error_messages", model: f.object %>
 
-<h1>New Book</h1>
-	<div class="field">
-		<%= f.label :title %><br>
-		<%= f.text_field :title %>
-	</div>
-	<div class="field">
-		<%= f.label :body %><br>
-		<%= f.text_area :body %>
-	</div>
-	<div class="actions">
-		<%= f.submit %>
-	</div>
-<% end %>
+			<h2>New Book</h2>
+				<div class="field form-group">
+					<%= f.label :title %><br>
+					<%= f.text_field :title, :class => "form-control" %>
+				</div>
+				<div class="field form-group">
+					<%= f.label :Opinion %><br>
+					<%= f.text_area :body, :class => "form-control" %>
+				</div>
+				<div class="actions">
+					<%= f.submit(class: 'btn btn-primary btn-block') %>
+				</div>
+			<% end %>
+
+</div>
+</div>
+</div>
