@@ -20,7 +20,6 @@ before_action :current_user, only: [:edit,:update, :destroy]
   	  	redirect_to @book, notice: "Book was successfully created."
   	  else
         @books = Book.all
-        session[:error] = @book.errors.full_messages
   	  	render :index
   	  end
   end
@@ -36,7 +35,7 @@ before_action :current_user, only: [:edit,:update, :destroy]
     @book = Book.find(params[:id])
     if @book.user == current_user
       if @book.update(book_params)
-       redirect_to book_path, notice: "You have updated book saccessfully."
+       redirect_to book_path, notice: "You have updated book successfully."
       else
        render :edit
       end
